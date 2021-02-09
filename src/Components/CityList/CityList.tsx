@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import List from "../List/";
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import List from '../List/'
 
 const ButtonsWrapper = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ const ButtonsWrapper = styled.div`
   place-items: center;
   width: 30%;
   color: black;
-`;
+`
 
 const CityListWrapper = styled.div`
   display: flex;
@@ -19,22 +19,24 @@ const CityListWrapper = styled.div`
   width: 30%;
   color: black;
   height: 100vh;
-`;
+`
 
-const CityList = ({
+interface CityListProps {
+  setCityPosition: (Position: Position) => void
+  setCityInfo: (popUp: CityInfo) => void
+  formattedCities: FormattedCities
+}
+
+const CityList: React.FC<CityListProps> = ({
   setCityPosition,
   setCityInfo,
   formattedCities,
-}: {
-  setCityPosition: (Position: Position) => void;
-  setCityInfo: (popUp: CityInfo) => void;
-  formattedCities: FormattedCities;
 }) => {
-  const [getIndex, setIndex] = useState<number>(0);
+  const [getIndex, setIndex] = useState<number>(0)
   const setPreviousIndex = () =>
-    !!formattedCities[getIndex - 1] && setIndex(getIndex - 1);
+    !!formattedCities[getIndex - 1] && setIndex(getIndex - 1)
   const setNextIndex = () =>
-    !!formattedCities[getIndex + 1] && setIndex(getIndex + 1);
+    !!formattedCities[getIndex + 1] && setIndex(getIndex + 1)
 
   return (
     <CityListWrapper>
@@ -48,7 +50,7 @@ const CityList = ({
         <button onClick={() => setNextIndex()}>next</button>
       </ButtonsWrapper>
     </CityListWrapper>
-  );
-};
+  )
+}
 
-export default CityList;
+export default CityList

@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const ListWrapper = styled.div`
   display: flex;
@@ -13,16 +13,18 @@ const ListWrapper = styled.div`
   flex-direction: column;
   place-items: center;
   place-content: center;
-`;
+`
 
-const List = ({
+interface ListProps {
+  cities: City[]
+  setCityPosition: (Position: Position) => void
+  setCityInfo: (CityInfo: CityInfo) => void
+}
+
+const List: React.FC<ListProps> = ({
   cities,
   setCityPosition,
   setCityInfo,
-}: {
-  cities: City[];
-  setCityPosition: (Position: Position) => void;
-  setCityInfo: (CityInfo: CityInfo) => void;
 }) => {
   return (
     <>
@@ -30,19 +32,19 @@ const List = ({
         <ListWrapper
           key={city.city}
           onClick={() => {
-            setCityPosition({ lat: city.latitude, lng: city.longitude });
+            setCityPosition({ lat: city.latitude, lng: city.longitude })
             setCityInfo({
               population: city.population,
               rank: city.rank,
               state: city.state,
-            });
+            })
           }}
         >
           {city.city}
         </ListWrapper>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default List;
+export default List
